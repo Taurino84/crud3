@@ -4566,9 +4566,11 @@ __metadata:
     "@testing-library/jest-dom": ^5.14.1
     "@testing-library/react": ^13.0.0
     "@testing-library/user-event": ^13.2.1
+    lodash: ^4.17.21
     react: ^18.2.0
     react-dom: ^18.2.0
     react-scripts: 5.0.1
+    shortid: ^2.2.16
     web-vitals: ^2.1.0
   languageName: unknown
   linkType: soft
@@ -8815,6 +8817,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"nanoid@npm:^2.1.0":
+  version: 2.1.11
+  resolution: "nanoid@npm:2.1.11"
+  checksum: 18cd14386816873849787eb4e65667021bfdeb019a8f14c74287c23594c67b7c0e8f42c7d69f6aedf05cd3d100f1ddc41184f9f9b6b17fbaea1c3ee3f0704eec
+  languageName: node
+  linkType: hard
+
 "nanoid@npm:^3.3.4":
   version: 3.3.4
   resolution: "nanoid@npm:3.3.4"
@@ -11270,6 +11279,15 @@ __metadata:
   version: 1.7.4
   resolution: "shell-quote@npm:1.7.4"
   checksum: 2874ea9c1a7c3ebfc9ec5734a897e16533d0d06f2e4cddc22ba3d1cab5cdc07d0f825364c1b1e39abe61236f44d8e60e933c7ad7349ce44de4f5dddc7b4354e9
+  languageName: node
+  linkType: hard
+
+"shortid@npm:^2.2.16":
+  version: 2.2.16
+  resolution: "shortid@npm:2.2.16"
+  dependencies:
+    nanoid: ^2.1.0
+  checksum: 0790ce22fe20aacc226915160da178b5a6af7814d1796404684f6699b60f77e291d39ad3b6b2b4c6efcf5553e1deeee7e29a48b8f46955de1425e67ab934e309
   languageName: node
   linkType: hard
 
