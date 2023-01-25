@@ -8,13 +8,24 @@ function App() {
   const [tasks, setTasks] = useState([])
   const [editMode, setEditMode] = useState(false)
   const [id, setId] = useState("")
+  const [error, setError] = useState(null)
+
+  const validForm = () =>{
+    let isValid = true
+    setError(null)
+    if (isEmpty(task)){
+      setError("Debes ingresar una tarea.")
+      isValid = false
+    }
+    return isValid
+  }
 
   const addTask = (e) =>{
     e.preventDefault()
-    if (isEmpty(task)){
-      console.log("Task Empty")
+    if(!validForm()){
       return
     }
+    
     const newTask = {
       id:shortid.generate(),
       name:task
@@ -25,8 +36,7 @@ function App() {
   }
   const saveTask = (e) =>{
     e.preventDefault()
-    if (isEmpty(task)){
-      console.log("Task Empty")
+    if(!validForm()){
       return
     }
     
@@ -45,7 +55,7 @@ function App() {
   const editTask = (theTask) =>{
     setTask(theTask.name)
     setEditMode(true)
-    setId(id)
+    setId(theTask.id)
   }
 
   return (
@@ -57,8 +67,8 @@ function App() {
           <h4 className='text-center'>Lista de tareas</h4>
           
           {
-            size(tasks) == 0 ? (
-              <h5> No hay tareas pendientes...</h5>
+            size(tasks) === 0 ? (
+              <li className='list-group-item'> No hay tareas pendientes...</li>
             ):(
             <ul className="list-group">
               {
@@ -69,7 +79,7 @@ function App() {
                 <button className='btn btn-danger btn-sm float-end'
                 onClick={()=>deleteTask(task.id)} >Eliminar</button>  
                 <button className='btn btn-warning btn-sm float-end mx-2'
-                onClick={()=>editTask(task.id)}>Editar</button>            
+                onClick={()=>editTask(task)}>Editar</button>            
               </li>
                 ))              
               }
@@ -78,13 +88,17 @@ function App() {
           }
         </div>
         <div className="col-4">
-          <h4 className='text-center'>{eidtMode ? 'Agregar Tarea' : 'Agregar Tarea'}</h4>
+          <h4 className='text-center'>{editMode ? 'Modificar Tarea' : 'Agregar Tarea'}</h4>
           <form onSubmit={editMode ? saveTask : addTask }>
+            { 
+              error && <span className='text-danger mb-2'>{error}</span>
+            }   
             <input type="text" className='form-control mb-2' placeholder='ingrese la tarea...' 
             onChange={(text)=> setTask(text.target.value)}
             value={task}
             />
-            <button className={editMode ? 'btn btn-warning w-100' : 'btn btn-dark w-100'} type='submit'>{editMode ? 'Guardar' : 'Agregar'}</button>
+                       
+              <button className={editMode ? 'btn btn-warning w-100' : 'btn btn-dark w-100'} type='submit'>{editMode ? 'Guardar' : 'Agregar'}</button>
           </form>
         </div>
       </div>
